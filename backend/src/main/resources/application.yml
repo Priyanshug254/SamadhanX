@@ -49,7 +49,7 @@ management:
 
 # ── API / Server ──────────────────────────────────────────────
 server:
-  port: ${SERVER_PORT:8088}
+  port: ${PORT:8088}
   servlet:
     context-path: /
   error:
