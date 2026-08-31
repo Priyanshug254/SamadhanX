@@ -1,17 +1,18 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
 
 WORKDIR /app
 
 COPY pom.xml .
-
-COPY maven/apache-maven-3.9.9 /opt/maven
-
-ENV PATH="/opt/maven/bin:${PATH}"
-
 COPY src ./src
 
 RUN mvn clean package -DskipTests
 
-EXPOSE 8080
+FROM eclipse-temurin:17-jre-alpine
 
-ENTRYPOINT ["java", "-jar", "target/samadhanx-backend-1.0.0-SNAPSHOT.jar"]
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8088
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
