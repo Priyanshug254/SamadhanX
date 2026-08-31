@@ -1,6 +1,6 @@
 class ApiEndpoints {
   // Base URL: Default to localhost:8088 (or 10.0.2.2:8088 on Android emulator)
-  static const String defaultBaseUrl = 'http://10.0.2.2:8088';
+  static const String defaultBaseUrl = 'https://samadhanx.onrender.com';
   
   // Auth
   static const String login = '/api/v1/auth/login';
